@@ -1,0 +1,82 @@
+<div class="form-container">
+    <div class="row">
+        <div class="col-md-4">
+            <mat-card class="card">
+                <mat-card-title class="title">
+                    Pension Appointment
+                </mat-card-title>
+                <img class="logo" src="../../../assets/logo_new.png" alt="Logo">
+
+                <form class="contactForm" [formGroup]="requestForm" (ngSubmit)="onSubmit(formDirective)" #formDirective="ngForm">
+                    <hr class="divider">
+                    <mat-form-field class="full-width">
+                        <mat-label>Select Type</mat-label>
+                        <mat-select formControlName="pensionerType" >
+                            <mat-option *ngFor="let type of pensionTypes" [value]="type.value" >
+                                {{type.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>NIC Number</mat-label>
+                        <input matInput formControlName="nic"(change)="changeNIC()" >
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Mobile Number</mat-label>
+                        <input matInput formControlName="mobileNo"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Pension No/Ref No</mat-label>
+                        <input matInput formControlName="pensionNo"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Select Branch</mat-label>
+                        <mat-select formControlName="branch">
+                            <mat-option *ngFor="let branch of branches" [value]="branch.pdBranchId">
+                                {{branch.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Reason</mat-label>
+                        <input matInput formControlName="reason">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Appointment Date</mat-label>
+                        <input matInput [matDatepicker]="picker" [min]="mindate" formControlName="appointmentDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                        <mat-datepicker #picker ></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Available Time Slots</mat-label>
+                        <mat-select formControlName="timeSlot">
+                            <mat-option *ngFor="let slot of timeSlots" [value]="slot">
+                                {{slot.slot}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="example-button-row">
+                        <button mat-raised-button color="primary">Submit</button>
+                        <!-- <button mat-raised-button color="primary" [disabled]="requestForm.invalid">Submit</button> -->
+                    </div>
+
+                </form>
+            </mat-card>
+        </div>
+    </div>
+
+</div>
