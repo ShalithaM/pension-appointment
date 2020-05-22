@@ -15,20 +15,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 import { HeaderComponent } from './components/common/header/header.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { NavBarComponent } from './components/common/nav-bar/nav-bar.component';
 import { HomeComponent } from './components/home/home.component';
-import { TestComponent } from './components/test/test.component';
 
 //Service files
 import { Config } from './service/config'
 import { CommonService } from './service/common.service'
 import { PensionerService } from './service/pensioner.service'
-import { AppointmentService } from './service/appointment.service'
+import { AppointmentService } from './service/appointment.service';
+import { AppointmentComponent } from './components/appointment/appointment.component'
 
 @NgModule({
   declarations: [
@@ -37,7 +40,7 @@ import { AppointmentService } from './service/appointment.service'
     FooterComponent,
     NavBarComponent,
     HomeComponent,
-    TestComponent
+    AppointmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,10 @@ import { AppointmentService } from './service/appointment.service'
     MatDatepickerModule,
     MatDividerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     Config,

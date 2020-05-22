@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-html,
+html{
+  height: 100%;
+}
 
 body {
   margin: 0;
@@ -9,6 +11,8 @@ body {
   background-image: url('./assets/cover.jpg');
   // background-repeat: no-repeat;
   background-size: cover;
+  overflow: scroll;
+  // overflow:hidden;
 }
 
 .header {
@@ -21,8 +25,12 @@ body {
   font-weight: bold;
   position: fixed;
   top: 5%;
-  
+}
 
+.form-container2 {
+  font-weight: bold;
+  position: absolute;
+  top: 1%;
 }
 .contactForm {
   min-width: 150px;
@@ -43,6 +51,42 @@ body {
   /* Added */
   margin-bottom: 10px;
   /* Added */
+}
+
+.card2 {
+  max-width: 90%;
+  // width: 1000px;
+  text-align: center;
+  margin: 0 auto;
+  /* Added */
+  float: none;
+  /* Added */
+  margin-bottom: 10px;
+  /* Added */
+}
+
+.contactForm2 {
+  min-width: 150px;
+  width: 100%;
+
+}
+
+.full-width2 {
+  width: 30%;
+  padding-left: 10px;
+}
+
+table {
+  width: 100%;
+}
+
+.td {
+  width: 2%;
+  text-align: left;
+}
+.th {
+  width: 2%;
+  text-align: left;
 }
 
 hr{

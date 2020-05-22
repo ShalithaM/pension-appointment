@@ -147,10 +147,6 @@ export class HomeComponent implements OnInit {
         appointmentDate: new FormControl(this.requestForm.value.appointmentDate, Validators.required),
         timeSlot: new FormControl(this.requestForm.value.timeSlot, Validators.required),
       })
-      setTimeout(() => {
-        this.requestForm.value.name = response.name
-        this.requestForm.value.pensionNo = response.pensionNo
-      }, 1000);
     })
       .catch(error => {
         this.requestForm = new FormGroup({
