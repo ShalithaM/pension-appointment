@@ -7,20 +7,17 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'appointment',
     component: AppointmentComponent
-  }
+  },
+  // {
+  //   path: '',
+  //   component: Home
+  // },
+  { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({
-  declarations:[],
+  declarations: [],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
