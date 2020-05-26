@@ -60,8 +60,8 @@ export class HomeComponent implements OnInit {
    * Submit function 
    */
   onSubmit(formDirective: FormGroupDirective) {
+    console.log(this.requestForm.value.appointmentDate);
 
-    console.log(this.requestForm.value);
 
     if (this.requestForm.status == 'VALID') {
 
@@ -78,9 +78,24 @@ export class HomeComponent implements OnInit {
             /*
              * Time slot available - Save appointment details 
              */
+            let newDate = new Date(this.requestForm.value.appointmentDate);
+            let year = newDate.getFullYear();
+            let month = newDate.getMonth() + 1;
+            let date = newDate.getDate();
+
+            var mm = String(month)
+            var dd = String(date)
+            if (month < 10) {
+              mm = "0" + month;
+            }
+            if (date < 10) {
+              dd = "0" + date;
+            }
+            var finalDate = `${year}-${mm}-${dd}`
+
             var payload = {
               "appinmentPensionerDetails": {
-                "appDate": this.requestForm.value.appointmentDate,
+                "appDate": finalDate,
                 "mobileNo": this.requestForm.value.mobileNo,
                 "name": this.requestForm.value.name,
                 "nic": this.requestForm.value.nic,
@@ -98,7 +113,7 @@ export class HomeComponent implements OnInit {
               this._snackBar.open(resp.message + resp.refNumber, "Close", {
                 duration: 4000,
                 verticalPosition: 'top',
-                horizontalPosition: 'end',
+                horizontalPosition: 'center',
                 panelClass: ['green-snackbar'],
               });
 
