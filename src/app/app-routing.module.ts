@@ -6,7 +6,7 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
 
 const routes: Routes = [
   // {
-  //   path: '',
+  //   path: 'appointment',
   //   component: AppointmentComponent
   // },
   {
