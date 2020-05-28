@@ -20,6 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { HeaderComponent } from './components/common/header/header.component';
@@ -32,8 +33,8 @@ import { Config } from './service/config'
 import { CommonService } from './service/common.service'
 import { PensionerService } from './service/pensioner.service'
 import { AppointmentService } from './service/appointment.service';
-import { AppointmentComponent } from './components/appointment/appointment.component'
-
+import { AppointmentComponent } from './components/appointment/appointment.component';
+import { SuccessModelComponent } from './components/common/success-model/success-model.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
     NavBarComponent,
     HomeComponent,
     AppointmentComponent,
+    SuccessModelComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,7 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule
   ],
   providers: [
     Config,

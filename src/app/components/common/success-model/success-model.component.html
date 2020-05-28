@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Appointment Successful </h1>
+<div mat-dialog-content>
+    <hr class="divider">
+    <ul>
+    <p>Appointment Number : {{data.refNumber}}</p>
+    <p>Date : {{data.appDate}}</p>
+    <p>Time : {{data.slot}}</p>
+</ul>
+    <hr class="divider">
+    <ul>
+        <li>
+            <p>Please come to the department 10 minutes before the appointment time.</p>
+            <p>කරුනාකර සම්මුඛ පරීක්ෂණය සඳහා ඔබවෙත ලබාදී ඇති වේලාවට විනාඩි දහයකට(10) පෙර විශ්‍රාම වැටුප් දෙපාර්තමේන්තුව
+                වෙත පැමිණෙන්න.</p>
+        </li>
+        <li>
+            <p>You are Required to show the SMS and the NIC to enter the department.</p>
+            <p>දෙපාර්තමේන්තුවට ඇතුලුවීමේදී වේලාව වෙන් කර ගැනීමට අදාළ කෙටි පණිවිඩය හා හැඳුනුම්පත ඉදිරිපත් කල යුතුය.</p>
+        </li>
+        <li>
+            <p>Please take all safety measures when you come to the appointment.</p>
+            <p>රජය විසින් හඳුන්වාදී ඇති සියලුම සෞඛ්‍ය ආරක්ෂිත ක්‍රම ඔබ විසින් අනුගමනය කල යුතුය.</p>
+        </li>
+        <li>
+            <p>Safety mask compulsory.</p>
+            <p>‍මුඛ ආවරණ අනිවාර්ය වේ.</p>
+        </li>
+        <li>
+            <p>Avoid coming to department if you have any symptoms of Covid 19.</p>
+            <p>ඔබට උණ, කැස්ස, සෙම්ප්‍රතිශ්‍යාව වැනි රෝග ලක්ෂණ පවතීනම් දෙපාර්ත‍මේන්තුව වෙත පැමිණීමෙන් වලකින්න.</p>
+        </li>
+    </ul>
+    <hr class="divider">
+</div>
+<div mat-dialog-actions class="modelFooter">
+    <button mat-raised-button color="primary" (click)="onCloseClick()">Close</button>
+</div>

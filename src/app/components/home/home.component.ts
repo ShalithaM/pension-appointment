@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+
+import { SuccessModelComponent } from '../common/success-model/success-model.component'
 
 import { CommonService } from '../../service/common.service'
 import { PensionerService } from '../../service/pensioner.service'
@@ -32,7 +35,8 @@ export class HomeComponent implements OnInit {
     private commonService: CommonService,
     private pensionerService: PensionerService,
     private appointmentService: AppointmentService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {
 
   }
@@ -60,8 +64,6 @@ export class HomeComponent implements OnInit {
    * Submit function 
    */
   onSubmit(formDirective: FormGroupDirective) {
-    console.log(this.requestForm.value.appointmentDate);
-
 
     if (this.requestForm.status == 'VALID') {
 
@@ -110,13 +112,17 @@ export class HomeComponent implements OnInit {
             }
 
             this.appointmentService.makeAppointment(payload).then(resp => {
-              this._snackBar.open(resp.message + resp.refNumber, "Close", {
-                duration: 4000,
-                verticalPosition: 'top',
-                horizontalPosition: 'center',
-                panelClass: ['green-snackbar'],
-              });
 
+              // this._snackBar.open(resp.message + resp.refNumber, "Close", {
+              //   duration: 4000,
+              //   verticalPosition: 'top',
+              //   horizontalPosition: 'center',
+              //   panelClass: ['green-snackbar'],
+              // });
+
+              this.dialog.open(SuccessModelComponent, {
+                data: { refNumber: resp.refNumber, appDate: finalDate, slot: this.requestForm.value.timeSlot.slot }
+              });
               formDirective.resetForm();
               this.requestForm.reset();
             })
