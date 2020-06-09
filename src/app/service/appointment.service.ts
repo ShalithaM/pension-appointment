@@ -33,7 +33,35 @@ export class AppointmentService {
     getAllAppintments(date, branch) {
         return this.axios.get(this.URL + 'brancanddaterepot/?appDate=' + date + '&branchid=' + branch, {
             headers: {
-                // 'token': 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxOTY5NSIsImlhdCI6MTU5MDQ4MDMxMywic3ViIjoiYXV0aF90b2tlbiIsImlzcyI6InBlbnNpb25kcHQiLCJiIjoidGVzdHBkNiIsImEiOiJQRU5TSU9OX1BPSU5UIiwiZCI6MjIsImV4cCI6MTU5MDUwOTExM30.wac0Ccisg8vBcFlwroWGdcOZ3gF7l463RkaA_alZdXU',
+                // 'token': 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4NjkzIiwiaWF0IjoxNTkxNjk2NjUzLCJzdWIiOiJhdXRoX3Rva2VuIiwiaXNzIjoicGVuc2lvbmRwdCIsImIiOiJyZWNlcHRpb24iLCJhIjoiUkVDRVBUSU9OIiwiZCI6MSwiZXhwIjoxNTkxNzI1NDUzfQ.gDEBy61AHdTJH8eidVDByO9YxKIx25cCIyxV58X3FPI',
+                'token' : localStorage.getItem("token")
+              }
+        }).then(function (response) {
+            return response.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+    }
+
+    getAppintmentsDate(date) {
+        return this.axios.get(this.URL + 'brancanddaterepot/?appDate=' + date, {
+            headers: {
+                // 'token': 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4NjkzIiwiaWF0IjoxNTkxNjk2NjUzLCJzdWIiOiJhdXRoX3Rva2VuIiwiaXNzIjoicGVuc2lvbmRwdCIsImIiOiJyZWNlcHRpb24iLCJhIjoiUkVDRVBUSU9OIiwiZCI6MSwiZXhwIjoxNTkxNzI1NDUzfQ.gDEBy61AHdTJH8eidVDByO9YxKIx25cCIyxV58X3FPI',
+                'token' : localStorage.getItem("token")
+              }
+        }).then(function (response) {
+            return response.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+    }
+
+    getAppintmentsBranch(branch) {
+        return this.axios.get(this.URL + 'brancanddaterepot/?branchid=' + branch, {
+            headers: {
+                // 'token': 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4NjkzIiwiaWF0IjoxNTkxNjk2NjUzLCJzdWIiOiJhdXRoX3Rva2VuIiwiaXNzIjoicGVuc2lvbmRwdCIsImIiOiJyZWNlcHRpb24iLCJhIjoiUkVDRVBUSU9OIiwiZCI6MSwiZXhwIjoxNTkxNzI1NDUzfQ.gDEBy61AHdTJH8eidVDByO9YxKIx25cCIyxV58X3FPI',
                 'token' : localStorage.getItem("token")
               }
         }).then(function (response) {

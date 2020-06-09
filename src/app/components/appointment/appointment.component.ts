@@ -36,8 +36,8 @@ export class AppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      branch: new FormControl(''),
-      appointmentDate: new FormControl(''),
+      branch: new FormControl(null),
+      appointmentDate: new FormControl(null),
     })
 
 
@@ -51,50 +51,131 @@ export class AppointmentComponent implements OnInit {
 
     if (this.searchForm.status == 'VALID') {
 
-      let newDate = new Date(this.searchForm.value.appointmentDate);
-      let year = newDate.getFullYear();
-      let month = newDate.getMonth() + 1;
-      let date = newDate.getDate();
+      if (this.searchForm.value.appointmentDate !== null && this.searchForm.value.branch === null) {
+        let newDate = new Date(this.searchForm.value.appointmentDate);
+        let year = newDate.getFullYear();
+        let month = newDate.getMonth() + 1;
+        let date = newDate.getDate();
 
-      var mm = String(month)
-      var dd = String(date)
-      if (month < 10) {
-        mm = "0" + month;
-      }
-      if (date < 10) {
-        dd = "0" + date;
-      }
-      var finalDate = `${year}-${mm}-${dd}`
-
-      this.appointmentService.getAllAppintments(finalDate, this.searchForm.value.branch).then(response => {
-
-        var data = response.data
-        
-        if(data.length == 0){
-          this._snackBar.open('No Appointments', "Close", {
-            duration: 4000,
-            verticalPosition: 'top',
-            horizontalPosition: 'end',
-            panelClass: ['red-snackbar'],
-          });
+        var mm = String(month)
+        var dd = String(date)
+        if (month < 10) {
+          mm = "0" + month;
         }
-        else{
-          this.dataSource = new MatTableDataSource(response.data);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
+        if (date < 10) {
+          dd = "0" + date;
         }
+        var finalDate = `${year}-${mm}-${dd}`
 
-        formDirective.resetForm();
-        this.searchForm.reset();
-      })
-        .catch(error => {
-          this._snackBar.open('No Appointments', "Close", {
-            duration: 4000,
-            verticalPosition: 'top',
-            horizontalPosition: 'end',
-            panelClass: ['red-snackbar'],
+        this.appointmentService.getAppintmentsDate(finalDate).then(response => {
+
+          var data = response.data
+
+          if (data.length == 0) {
+            this._snackBar.open('No Appointments', "Close", {
+              duration: 4000,
+              verticalPosition: 'top',
+              horizontalPosition: 'end',
+              panelClass: ['red-snackbar'],
+            });
+          }
+          else {
+            this.dataSource = new MatTableDataSource(response.data);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          }
+
+          formDirective.resetForm();
+          this.searchForm.reset();
+        })
+          .catch(error => {
+            this._snackBar.open('No Appointments', "Close", {
+              duration: 4000,
+              verticalPosition: 'top',
+              horizontalPosition: 'end',
+              panelClass: ['red-snackbar'],
+            });
           });
-        });
+
+      }
+      else if (this.searchForm.value.appointmentDate === null && this.searchForm.value.branch !== null) {
+
+        this.appointmentService.getAppintmentsBranch(this.searchForm.value.branch).then(response => {
+
+          var data = response.data
+
+          if (data.length == 0) {
+            this._snackBar.open('No Appointments', "Close", {
+              duration: 4000,
+              verticalPosition: 'top',
+              horizontalPosition: 'end',
+              panelClass: ['red-snackbar'],
+            });
+          }
+          else {
+            this.dataSource = new MatTableDataSource(response.data);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          }
+
+          formDirective.resetForm();
+          this.searchForm.reset();
+        })
+          .catch(error => {
+            this._snackBar.open('No Appointments', "Close", {
+              duration: 4000,
+              verticalPosition: 'top',
+              horizontalPosition: 'end',
+              panelClass: ['red-snackbar'],
+            });
+          });
+      }
+      else {
+        let newDate = new Date(this.searchForm.value.appointmentDate);
+        let year = newDate.getFullYear();
+        let month = newDate.getMonth() + 1;
+        let date = newDate.getDate();
+
+        var mm = String(month)
+        var dd = String(date)
+        if (month < 10) {
+          mm = "0" + month;
+        }
+        if (date < 10) {
+          dd = "0" + date;
+        }
+        var finalDate = `${year}-${mm}-${dd}`
+
+        this.appointmentService.getAllAppintments(finalDate, this.searchForm.value.branch).then(response => {
+
+          var data = response.data
+
+          if (data.length == 0) {
+            this._snackBar.open('No Appointments', "Close", {
+              duration: 4000,
+              verticalPosition: 'top',
+              horizontalPosition: 'end',
+              panelClass: ['red-snackbar'],
+            });
+          }
+          else {
+            this.dataSource = new MatTableDataSource(response.data);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          }
+
+          formDirective.resetForm();
+          this.searchForm.reset();
+        })
+          .catch(error => {
+            this._snackBar.open('No Appointments', "Close", {
+              duration: 4000,
+              verticalPosition: 'top',
+              horizontalPosition: 'end',
+              panelClass: ['red-snackbar'],
+            });
+          });
+      }
     }
   }
 
