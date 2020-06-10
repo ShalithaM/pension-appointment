@@ -17,6 +17,7 @@ export class AppointmentComponent implements OnInit {
 
   searchForm: FormGroup;
   mindate: Date;
+  myDateFilter: any;
   branches: any[]
   dataSource: MatTableDataSource<AppointmentData>;
   displayedColumns: string[] = ['appintmentId', 'name', 'nic', 'mobileNo', 'pdBranchName', 'reason', 'appDate', 'slot'];
@@ -40,9 +41,12 @@ export class AppointmentComponent implements OnInit {
       appointmentDate: new FormControl(null),
     })
 
-
-
-    // this.mindate = new Date()
+    this.mindate = new Date()
+    this.myDateFilter = (d: Date): boolean => {
+      const day = d.getDay();
+      // Prevent Saturday and Sunday from being selected.
+      return day !== 0 && day !== 6;
+    }
 
     this.loadBranches()
   }

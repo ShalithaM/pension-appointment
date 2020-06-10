@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
 
   requestForm: FormGroup;
   mindate: Date;
+  myDateFilter: any;
 
   pensionTypes: any[] = [
     { value: 'Pensioner' },
@@ -55,6 +56,13 @@ export class HomeComponent implements OnInit {
     })
 
     this.mindate = new Date()
+    this.mindate.setDate(this.mindate.getDate() + 1)
+
+    this.myDateFilter = (d: Date): boolean => {
+      const day = d.getDay();
+      // Prevent Saturday and Sunday from being selected.
+      return day !== 0 && day !== 6;
+    }
 
     this.loadBranches()
     this.loadTimeSlots()

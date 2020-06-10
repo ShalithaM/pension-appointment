@@ -22,7 +22,7 @@
 
                     <mat-form-field class="full-width2">
                         <mat-label>Appointment Date</mat-label>
-                        <input matInput [matDatepicker]="picker" [min]="mindate" formControlName="appointmentDate">
+                        <input matInput [matDatepicker]="picker" [min]="mindate" [matDatepickerFilter]="myDateFilter"  formControlName="appointmentDate">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>

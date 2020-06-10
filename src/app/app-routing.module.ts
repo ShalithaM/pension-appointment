@@ -5,14 +5,14 @@ import { HomeComponent } from './components/home/home.component'
 import { AppointmentComponent } from './components/appointment/appointment.component'
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AppointmentComponent
-  },
   // {
   //   path: '',
-  //   component: HomeComponent
+  //   component: AppointmentComponent
   // },
+  {
+    path: '',
+    component: HomeComponent
+  },
   { path: '**', redirectTo: '/' }
 ];
 
